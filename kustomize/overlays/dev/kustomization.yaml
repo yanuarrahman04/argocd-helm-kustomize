@@ -1,12 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+# 
 resources:
   - ../../base
 
+# grade submision api di depannya akan ada nama dev- agar mudah di kenali
 namePrefix: dev-
 nameSuffix: ""
 
+#Berfungsi untuk menimpa (override) atau memodifikasi bagian tertentu dari manifest dasar. (recouse base)
+# kenapa dilakukan patches karena base sendiri beirisi konfigurasi inti jadi ketika diubah di base maka proses dev,stg,prod juga akan ikkut terganti
 patches:
   - path: replicas-patch.yaml
     target:
